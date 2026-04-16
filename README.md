@@ -63,7 +63,7 @@ The inverse CDF `y = γ · tan(πx − π/2)` corresponds to a Cauchy (Lorentz) 
 
 ## Related Work
 
-This project builds on a prior paper published in *Parabola* (UNSW): [Weighting for a Better Distribution — Gram-Charlier in the World of Finance](https://parabola.unsw.edu.au), which derives an alternative Gram-Charlier PDF to model asymmetric return distributions more accurately than the standard normal assumption.
+This project builds on a prior paper published in *Parabola* (UNSW): [Weighting for a Better Distribution — Gram-Charlier in the World of Finance]([https://parabola.unsw.edu.au](https://drive.google.com/file/d/1tf-y3Yc5dop67EpqQZbDeXW_f6YClDhS/view)), which derives an alternative Gram-Charlier PDF to model asymmetric return distributions more accurately than the standard normal assumption.
 
 ---
 
