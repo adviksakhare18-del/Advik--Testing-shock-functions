@@ -78,5 +78,5 @@ This project builds on a prior paper published in *Parabola* (UNSW): [Weighting 
 
 ## Author
 
-**Advik Sakhare** — B.Actuarial Studies/B.Advanced Math(Hons), Firt year  
+**Advik Sakhare** — B.Actuarial Studies/B.Advanced Math(Hons), First year  
 April 2026
