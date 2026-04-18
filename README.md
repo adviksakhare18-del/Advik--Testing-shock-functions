@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project investigates whether the standard normal inverse — the near-universal shock function in Geometric Brownian Motion (GBM) stock models — can be replaced with mathematically grounded alternatives that offer better predictive performance.
+A volatility shock function is a function of some random variable over the interval [0,1] that decides how strongly the stock price fluctuates in the short-term.
+
+This project investigates whether the standard normal inverse, the most common volatility shock function in Geometric Brownian Motion (GBM) stock models can be replaced with alteratives using elementary functions that offer better predictive performance.
 
 Two candidate functions are derived from first principles:
 - A **logistic inverse**: `ln(x / 1 - x)`, derived as the inverse CDF of the logistic distribution
@@ -26,9 +28,9 @@ where $Z$ is the output of each shock function applied to `RAND()`.
 
 *When stable — approximately 50% of runs produce extreme divergence (up to 10⁶% error).
 
-- The **ln variant** matches the baseline in mean error but consistently produces tighter error bands, making it a viable drop-in replacement
-- The **tan function** is theoretically interesting but practically unusable — a direct consequence of the Cauchy distribution having undefined mean and variance
-- Notably, setting γ = 0 (drift-only, no shock) minimises mean error and reduces std dev to 0, suggesting that for stable blue-chips over short horizons, directional uncertainty dominates shock modelling
+- The **ln variant** tends to match the baseline or underperform in mean error but consistently produces tighter error bands, making it a viable drop-in replacement for certain functions.
+- The **tan function** is theoretically interesting but practically unusable due to its extreme instability, which is a direct consequence of the Cauchy distribution having undefined mean and variance. It could potentially be improved by adding a range restriction, or making it a piecewise function.
+- Notably, setting γ = 0 (drift-only, no shock) minimises mean error and reduces std dev to 0, suggesting that for stable blue-chips over short horizons, directional uncertainty dominates shock modelling. This makes sense, as stock prices follow trends across the timescale of weeks and months, but fluctuate a lot in smaller timescales.
 
 ---
 
@@ -36,8 +38,8 @@ where $Z$ is the output of each shock function applied to `RAND()`.
 
 | File | Description |
 |---|---|
-| `GBM_shock_functions.xlsx` | Full Excel model with Monte Carlo simulation, graphs, and all three shock functions |
-| `Testing different shock functions.pdf` | Written report covering derivations, methodology, results, and discussion |
+| `Testing different shock functions using GBM for MSFT.xlsx` | Full Excel model with Monte Carlo simulation, graphs, and all three shock functions. Can also be reused for other stocks |
+| `Testing different shock function alternatives for stock prediction models using GBM in Excel.pdf` | Written report covering derivations, methodology, results, and discussion |
 
 ---
 
@@ -54,7 +56,7 @@ where $Z$ is the output of each shock function applied to `RAND()`.
 ## Mathematical Background
 
 ### Logistic inverse
-The function `f(x) = eˣ / (eˣ + 1)²` is shown to be a valid p.d.f (integrates to 1, is non-negative). Its CDF is `F(x) = eˣ / (eˣ + 1)`, and its inverse CDF — used as the shock function — is `ln(x / 1 - x)`.
+The function `f(x) = eˣ / (eˣ + 1)²` is shown to be a valid p.d.f (integrates to 1, is non-negative). Its CDF is `F(x) = eˣ / (eˣ + 1)`, and its inverse CDF — used as the shock function — is `ln(x / 1 - x)`. It's inverse p.d.f was one found using trial and error, and is not a common distribution, however it does resemble the Lorentz distribution.
 
 ### Tangent / Lorentz
 The inverse CDF `y = γ · tan(πx − π/2)` corresponds to a Cauchy (Lorentz) distribution with scale parameter γ. Its p.d.f `γ / π(γ² + x²)` is valid, but the distribution has no finite moments — explaining the tan function's extreme instability in practice.
